@@ -10,15 +10,35 @@
   <link href="lib/css/main.css" rel="stylesheet">
   <!-- Icons Stylesheet -->
   <link href="lib/css/themify-icons.min.css" rel="stylesheet">
-  
+  <!-- Icons Stylesheet -->
+  <link href="lib/css/gr.css" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 <body>
 
+  <div id="floating-logo">
+    <img src="lib/images/logo.jpg" alt="logo" />
+    <!-- 弹出框 -->
+    <div id="contact-popup" class="hidden">
+      <a href="#" target="_blank" id="whatsapp-link">
+        <img src="lib\images\whatsapp.png" alt="WhatsApp" class="contact-icon" />
+      </a>
+      <a href="#" target="_blank" id="email-link">
+        <img src="lib\images\email.png" alt="Email" class="contact-icon" />
+      </a>
+      <a href="https://www.youtube.com/@GpsTrackerFactorySupplier" target="_blank">
+        <img src="lib\images\youtube.png" alt="Youtube" class="contact-icon" />
+      </a>
+    </div>
+  </div>
+
   <div id="flipbookContainer">
   </div>
 
+  <!-- 联系方式弹出 -->
+  <script src="lib\js\contact.js" type="text/javascript"></script>
   <!-- jQuery  -->
   <script src="lib/js/libs/jquery.min.js" type="text/javascript"></script>
   <!-- Flipbook main Js file -->
@@ -35,7 +55,7 @@
         soundEnable : false,
         // Enable touch support
         useTouch: true,
-        sharePrefix: 'Great-Will-',
+        sharePrefix: "Great-Will-",
       };
       var flipBook = $("#flipbookContainer").flipBook(pdf, options);
     });

@@ -1,10 +1,11 @@
-/* 页面基础样式 */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 200vh; /* 模拟滚动内容 */
-  }
+  /* 页面基础样式 */
+html, body {
+  font-family: Arial, sans-serif; 
+  height: 100%;          /* 确保页面填满整个屏幕 */
+  margin: 0;             /* 去掉默认的边距 */
+  padding: 0;            /* 去掉默认的内边距 */
+  overflow: hidden;      /* 禁止滚动 */
+}
   
   /* 悬浮Logo样式 */
   #floating-logo {
@@ -66,8 +67,12 @@ body {
   
 /* 手机端样式调整 */
 @media screen and (max-width: 768px) {
+  #floating-logo {
+    bottom: 60px;    /* 距离底部 */
+  }
+
   #floating-logo img {
-    width: 40px; /* 在手机上显示较小的 Logo */
+    width: 50px; /* 在手机上显示较小的 Logo */
   }
 
   #contact-popup {
@@ -75,7 +80,7 @@ body {
   }
 
   .contact-icon {
-    width: 30px; /* 在手机上图标稍小 */
-    height: 30px;
+    width: 40px; /* 在手机上图标稍小 */
+    height: 40px;
   }
 }

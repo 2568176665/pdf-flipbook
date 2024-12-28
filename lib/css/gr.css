@@ -38,6 +38,26 @@ body {
   animation: ripple 2s linear infinite;
 }
 
+.logo {
+  width: 60px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#floating-logo:hover {
+  transform: translateY(-5px);
+}
+
+#floating-logo img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 1);
+}
+
 @keyframes bounce {
   0%,
   20%,
@@ -65,52 +85,6 @@ body {
   }
 }
 
-.logo {
-  width: 60px;
-  height: auto;
-  border-radius: 50%;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(5px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-#floating-logo:hover {
-  transform: translateY(-5px);
-}
-
-#floating-logo img:hover {
-  transform: scale(1.1);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 1);
-}
-
-/* 弹出框样式 */
-#contact-popup {
-  position: absolute;
-  bottom: 80px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 10px;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  opacity: 0;
-  transform: translateY(10px) scale(0.95);
-  pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(8px);
-  width: 60px;
-}
-
-#contact-popup.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
-}
-
 /* 图标样式 */
 .contact-icon {
   width: 40px;
@@ -118,6 +92,7 @@ body {
   border-radius: 8px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 5px;
+  border-radius: 10vh;
   background: rgba(255, 255, 255, 0.85);
 }
 
@@ -159,6 +134,33 @@ body {
   transform: translateY(-50%) translateX(-5px); /* 添加轻微的位移效果 */
 }
 
+/* 弹出框样式 */
+#contact-popup {
+  position: absolute;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  border: none;
+  border-radius: 10vh;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+  width: 60px;
+}
+
+#contact-popup.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+
 /* 音乐播放器样式 */
 #music {
   position: fixed; /* 固定定位 */
@@ -167,6 +169,7 @@ body {
   z-index: 1000; /* 保证置顶 */
   cursor: pointer; /* 鼠标指针 */
 }
+
 
 /* 手机端样式调整 */
 @media screen and (max-width: 768px) {
@@ -202,7 +205,7 @@ body {
     height: 80px;
   }
 
-  @keyframes ripple {
+    @keyframes ripple {
     0% {
       transform: translate(-50%, -50%) scale(0);
       opacity: 1;

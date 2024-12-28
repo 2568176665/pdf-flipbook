@@ -64,3 +64,18 @@ body {
     transform: scale(1.2); /* 悬停放大效果 */
   }
   
+/* 手机端样式调整 */
+@media screen and (max-width: 768px) {
+  #floating-logo img {
+    width: 40px; /* 在手机上显示较小的 Logo */
+  }
+
+  #contact-popup {
+    bottom: 60px; /* 调整弹出框位置 */
+  }
+
+  .contact-icon {
+    width: 30px; /* 在手机上图标稍小 */
+    height: 30px;
+  }
+}

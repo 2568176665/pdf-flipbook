@@ -68,7 +68,7 @@ html, body {
 /* 手机端样式调整 */
 @media screen and (max-width: 768px) {
   #floating-logo {
-    bottom: 60px;    /* 距离底部 */
+    bottom: 1vh;    /* 距离底部 */
   }
 
   #floating-logo img {

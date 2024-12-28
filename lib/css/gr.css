@@ -59,12 +59,42 @@ html, body {
   /* 图标样式 */
   .contact-icon {
     width: 40px; /* 图标大小 */
-    height: 40px;
+    height: auto;
     transition: transform 0.3s ease;
   }
   
   .contact-icon:hover {
     transform: scale(1.2); /* 悬停放大效果 */
+  }
+
+  /* 提示框样式 */
+  .tooltip {
+    display: none;  /* 默认隐藏 */
+    position: absolute;
+    right: 45px;  /* 将提示框移至图标左边 */
+    top: 50%;
+    transform: translateY(-50%); /* 垂直居中 */
+    background-color: #333;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  /* 鼠标悬停时显示提示框 */
+  .contact-icon:hover + .tooltip {
+    display: block;
+    opacity: 1; /* 显示并淡入 */
+  }
+
+  #music {
+    position: fixed; /* 固定定位 */
+    bottom: 20px;    /* 距离底部 */
+    left: 20px;     /* 距离右侧 */
+    z-index: 1000;   /* 保证置顶 */
+    cursor: pointer; /* 鼠标指针 */
   }
   
 /* 手机端样式调整 */

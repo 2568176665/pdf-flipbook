@@ -27,14 +27,15 @@
   <script>
     jQuery(document).ready(function () {
       //uses source from online(make sure the file has CORS access enabled if used in cross-domain)
-      var pdf = 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf';
+      var pdf = 'lib/pdf/Great-Will.pdf';
       var options = {
         height:2000,
         duration: 700,
-        backgroundColor: "#2F2D2F",
+        backgroundImage: "lib/images/bg.jpg",
         soundEnable : false,
         // Enable touch support
-        useTouch: true
+        useTouch: true,
+        sharePrefix: 'Great-Will-',
       };
       var flipBook = $("#flipbookContainer").flipBook(pdf, options);
     });

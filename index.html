@@ -1,86 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Great-Will 产品手册</title>
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
 
-<head>
-  <meta charset="utf-8">
-  <title>Great-Will Product brochure</title>
-  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-  
-  <!-- Flipbook StyleSheet -->
-  <link href="lib/css/main.css" rel="stylesheet">
-  <!-- Icons Stylesheet -->
-  <link href="lib/css/themify-icons.min.css" rel="stylesheet">
-  <!-- Icons Stylesheet -->
-  <link href="lib/css/gr.css" rel="stylesheet">
+    <!-- 翻页书样式表 -->
+    <link href="lib/css/main.css" rel="stylesheet" />
+    <!-- 图标样式表 -->
+    <link href="lib/css/themify-icons.min.css" rel="stylesheet" />
+    <!-- 图标样式表 -->
+    <link href="lib/css/gr.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 添加 favicon -->
+    <link rel="icon" href="lib\images\favicon.svg" type="image/x-icon" />
+  </head>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- 添加 favicon -->
-  <link rel="icon" href="lib\images\favicon.svg" type="image/x-icon">
-</head>
-<body>
-  <!-- Logo导航栏 -->
-  <div id="floating-logo">
-    <img src="lib/images/logo.jpg" alt="logo" class="logo"/>
-    <!-- 弹出框 -->
-    <div id="contact-popup" class="hidden">
-      <a href="#" target="_blank" id="whatsapp-link">
-        <img src="lib\images\whatsapp.png" alt="WhatsApp" class="contact-icon" />
-        <span class="tooltip">WhatsApp</span>  <!-- 提示框 -->
-      </a>
-      <a href="#" target="_blank" id="skype-link">
-        <img src="lib\images\skype.png" alt="Skype" class="contact-icon" />
-        <span class="tooltip">Skype</span>  <!-- 提示框 -->
-      </a>
-      <!-- <a href="#" target="_blank" id="email-link">
-        <img src="lib\images\email.png" alt="Email" class="contact-icon" />
-        <span class="tooltip">Visit our YouTube</span>  提示框
-      </a> -->
-      <a href="https://targestargps.com/" target="_blank" id="website-link">
-        <img src="lib\images\website.png" alt="Website" class="contact-icon" />
-        <span class="tooltip">Website</span>  <!-- 提示框 -->
-      </a>
-      <a href="https://www.youtube.com/@GpsTrackerFactorySupplier" target="_blank">
-        <img src="lib\images\youtube.png" alt="Youtube" class="contact-icon" />
-        <span class="tooltip">Youtube</span>  <!-- 提示框 -->
-      </a>
+  <body>
+    <!-- Logo导航栏 -->
+    <div id="floating-logo">
+      <img src="lib/images/logo.jpg" alt="logo" class="logo" />
+      <!-- 弹出框 -->
+      <div id="contact-popup" class="hidden">
+        <div class="tooltip-container">
+          <a href="#" target="_blank" id="whatsapp-link">
+            <img
+              src="lib/images/whatsapp.png"
+              alt="WhatsApp"
+              class="contact-icon"
+            />
+            <span class="tooltip">WhatsApp</span>
+          </a>
+        </div>
+        <div class="tooltip-container">
+          <a href="#" target="_blank" id="skype-link">
+            <img src="lib/images/skype.png" alt="Skype" class="contact-icon" />
+            <span class="tooltip">Skype</span>
+          </a>
+        </div>
+        <!-- <div class="tooltip-container">
+        <a href="#" target="_blank" id="email-link">
+          <img src="lib/images/email.png" alt="Email" class="contact-icon" />
+          <span class="tooltip">E-Mail</span>
+        </a>
+      </div> -->
+        <div class="tooltip-container">
+          <a href="https://targestargps.com/" target="_blank" id="website-link">
+            <img
+              src="lib/images/website.png"
+              alt="Website"
+              class="contact-icon"
+            />
+            <span class="tooltip">Official website</span>
+          </a>
+        </div>
+        <div class="tooltip-container">
+          <a
+            href="https://www.youtube.com/@GpsTrackerFactorySupplier"
+            target="_blank"
+          >
+            <img
+              src="lib/images/youtube.png"
+              alt="Youtube"
+              class="contact-icon"
+            />
+            <span class="tooltip">Youtube</span>
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div id="music">
-    <iframe 
-      frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 
-      src="//music.163.com/outchain/player?type=0&id=2520739691&auto=1&height=32">
-    </iframe>
-  </div>
+    <div id="music">
+      <iframe
+        loading="lazy"
+        frameborder="no"
+        border="0"
+        marginwidth="0"
+        marginheight="0"
+        width="298"
+        height="52"
+        src="//music.163.com/outchain/player?type=0&id=2520739691&auto=1&height=32"
+      >
+      </iframe>
+    </div>
 
-  <div id="productBrochure">
-  </div>
+    <div id="productBrochure"></div>
 
-  <!-- 联系方式弹出 -->
-  <script src="lib\js\contact.js" type="text/javascript"></script>
-  <!-- jQuery  -->
-  <script src="lib/js/libs/jquery.min.js" type="text/javascript"></script>
-  <!-- Flipbook main Js file -->
-  <script src="lib/js/flip.js" type="text/javascript"></script>
-  <!-- Flipbook main Js file -->
-  <script>
-    jQuery(document).ready(function () {
-      //uses source from online(make sure the file has CORS access enabled if used in cross-domain)
-      var pdf = 'lib/pdf/Great-Will.pdf';
-      var options = {
-        height:2000,
-        duration: 700,
-        backgroundImage: "lib/images/bg.jpg",
-        soundEnable : false,
-        // Enable touch support
-        useTouch: true,
-        sharePrefix: "Great-Will-",
-      };
-      var flipBook = $("#productBrochure").flipBook(pdf, options);
-    });
-  </script>
-
-</body>
+    <!-- 联系方式弹出 -->
+    <script src="lib\js\contact.js" type="text/javascript"></script>
+    <!-- jQuery  -->
+    <script src="lib/js/libs/jquery.min.js" type="text/javascript"></script>
+    <!-- 翻页书主 Js 文件 -->
+    <script src="lib/js/flip.js" type="text/javascript"></script>
+    <!-- 翻页书主 Js 文件 -->
+    <script async="async">
+      jQuery(document).ready(function () {
+        // 可以使用在线资源（如果跨域使用，请确保文件启用了 CORS 访问）
+        var pdf = 'lib/pdf/Great-Will.pdf'
+        var options = {
+          height: 2000,
+          duration: 700,
+          backgroundImage: 'lib/images/bg.jpg',
+          soundEnable: false,
+          // 启用触摸支持
+          useTouch: true,
+          sharePrefix: 'Great-Will-'
+        }
+        var flipBook = $('#productBrochure').flipBook(pdf, options)
+      })
+    </script>
+  </body>
 </html>
-

@@ -19,12 +19,13 @@ html, body {
     align-items: center;
   }
   
-  #floating-logo img {
+  .logo {
     width: 60px;       /* Logo 尺寸 */
     height: auto;      /* 保持比例 */
     border-radius: 50%; /* 圆形Logo */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+    box-shadow: 0 6px 8px rgba(232, 56, 40, 0.2); /* 阴影效果 */
     transition: transform 0.3s ease; /* 动画效果 */
+    border: 2px solid rgba(232, 56, 40, 0.5);
   }
   
   #floating-logo img:hover {
@@ -40,8 +41,9 @@ html, body {
     gap: 10px; /* 图标间距 */
     background-color: rgb(255, 255, 255);
     padding: 10px;
+    border: 2px solid rgba(232, 56, 40, 0.5);
     border-radius: 10vh;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 8px rgba(232, 56, 40, 0.2);
     opacity: 0; /* 初始透明 */
     transform: translateY(10px); /* 初始位置下移 */
     pointer-events: none; /* 初始时禁用点击 */
@@ -81,6 +83,6 @@ html, body {
 
   .contact-icon {
     width: 40px; /* 在手机上图标稍小 */
-    height: 40px;
+    height: auto;
   }
 }

@@ -1,18 +1,18 @@
-# <p align="center">PDF Flipbook</p>
+# <p align="center">PDF 翻页书</p>
 
-<https://pdfflipbook.vercel.app> - Demo
+<https://pdfflipbook.vercel.app> - 演示
 
 ---
 
-## Documentation
+## 文档
 
-### Q) Flipbook pages are not visible/defective in PDF
+### 问) PDF 中的翻页书页面不可见/显示异常
 
-Check the pdf if using the link Make sure that cross-origin resource sharing is enabled
+如果使用链接，请检查 PDF 文件，确保启用了跨域资源共享
 
-## File Structure
+## 文件结构
 
-This flipbook plugin is jQuery-based. Basically, you can copy the files in folder to your working directory. You don't need to include the lib folder..
+此翻页书插件基于 jQuery。基本上，您可以将文件夹中的文件复制到您的工作目录。您无需包含 lib 文件夹。
 
 ```
 lib/ 
@@ -43,18 +43,18 @@ lib/
 
 ```
 
-## File Template
+## 文件模板
 
-And ensure the following files are included in the html.
+并确保在 html 中包含以下文件。
 
 ### CSS
 
 ```
             
-<!-- Flipbook StyleSheet -->
+<!-- 翻页书样式表 -->
 <link href="http://www.yoursite.com/lib/css/min.css" rel="stylesheet" type="text/css">
 
-<!-- Icons Stylesheet -->
+<!-- 图标样式表 -->
   <link href="http://www.yoursite.com/lib/css/themify-icons.css" rel="stylesheet" type="text css">
             
         
@@ -62,23 +62,23 @@ And ensure the following files are included in the html.
 
 ### JavaScript
 
-Note: Include them just before </body> tag. Don't use them in head.
+注意：将它们包含在 </body> 标签之前。不要在 head 中使用。
 
 ```
             
-<!-- jQuery 1.9.1 or above -->
+<!-- jQuery 1.9.1 或更高版本 -->
 
 <script src="http://www.yoursite.com/lib/js/libs/jquery.min.js" type="text/javascript"></script>
 
 
-<!-- Flipbook main Js file -->
+<!-- 翻页书主 JavaScript 文件 -->
 
 <script src="http://www.yoursite.com/lib/js/flip.min.js" type="text/javascript"></script>
             
         
 ```
 
-Basic HTML Template
+基本 HTML 模板
 
 ```
 
@@ -87,48 +87,48 @@ Basic HTML Template
        <meta charset="utf-8">
        <meta http-equiv="X-UA-Compatible" content="IE=edge">
        
-          <title>Basic HTML Template</title>
+          <title>基本 HTML 模板</title>
 
-     <!-- Flipbook StyleSheet -->
+     <!-- 翻页书样式表 -->
       <link href="http://www.yoursite.com/lib/css/min.css" rel="stylesheet" type="text/css">
 
-     <!-- Icons Stylesheet -->
+     <!-- 图标样式表 -->
      <link href="http://www.yoursite.com/lib/css/themify-icons.css" rel="stylesheet" type="text/css">
 
    </head>
     <body>
-    <div class="_df_thumb" id="df_manual_thumb" source="location of pdf.pdf" thumb="location of thumbnail.jpg"> PDF Example</div >
-    <!-- Refer to other examples on how to create different types of flipbook -->
+    <div class="_df_thumb" id="df_manual_thumb" source="pdf文件位置.pdf" thumb="缩略图位置.jpg"> PDF 示例</div >
+    <!-- 参考其他示例以了解如何创建不同类型的翻页书 -->
 
-    <!-- jQuery 1.9.1 or above -->
+    <!-- jQuery 1.9.1 或更高版本 -->
     <script src="http://www.yoursite.com/lib/js/libs/jquery.min.js" type="text/javascript"></script>
 
-    <!-- Flipbook main Js file -->
+    <!-- 翻页书主 JavaScript 文件 -->
     <script src="http://www.yoursite.com/lib/js/flip.min.js" type="text/javascript"></script>
 
     </body>
     </html>
 ```
 
-Create Flipbook through Button lightbox.
+通过按钮灯箱创建翻页书。
 
 ```
 <div class="_df_button"
     source="http://www.yoursite.com/file.pdf"
     id="df_manual_button">
-    Button
+    按钮
 </div>
 ```
 
 ---
 
-### Contributors
+### 贡献者
 
 - [@HiIamChaitanya](https://www.github.com/HiIamChaitanya)
 
 ---
 
-### Acknowledgements
+### 致谢
 
 - [pdf.js]()
 - [three.js]()

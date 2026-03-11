@@ -9,6 +9,10 @@ body {
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
+.hidden {
+  display: none;
+}
+
 /* 悬浮Logo样式 */
 #floating-logo {
   position: absolute;
@@ -105,6 +109,8 @@ body {
 /* 提示框样式 */
 .tooltip-container {
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .tooltip {
@@ -140,6 +146,7 @@ body {
   bottom: 80px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 8px;
   background: rgba(255, 255, 255, 0.95);
   padding: 10px;
@@ -152,6 +159,11 @@ body {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(8px);
   width: 60px;
+}
+
+#contact-popup a {
+  display: flex;
+  justify-content: center;
 }
 
 #contact-popup.visible {

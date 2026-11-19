@@ -126,6 +126,15 @@ body {
   width: 60px;
 }
 
+#contact-popup::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 30px;
+}
+
 #contact-popup a {
   display: flex;
   justify-content: center;

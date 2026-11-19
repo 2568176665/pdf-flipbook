@@ -28,7 +28,7 @@ function setup(withEmail = false) {
     getElementById(id) { return elements[id] || null },
     addEventListener(name, handler) { documentHandlers[name] = handler }
   }
-  vm.runInNewContext(fs.readFileSync('lib/js/contact.js', 'utf8'), { document, window: { open() {} } })
+  vm.runInNewContext(fs.readFileSync('lib/js/contact.js', 'utf8'), { document, window: { open() {}, matchMedia() { return { matches: true } } } })
   documentHandlers.DOMContentLoaded()
   return { elements, documentHandlers }
 }
@@ -44,6 +44,21 @@ test('contact menu opens, closes, and restores focus on Escape without email', (
   assert.equal(popup.hidden, true)
   assert.equal(toggle.attributes['aria-expanded'], 'false')
   assert.equal(toggle.focused, true)
+})
+
+test('mouse hover opens and closes the menu without affecting touch', () => {
+  const { elements } = setup()
+  const logo = elements['floating-logo']
+  const popup = elements['contact-popup']
+  const toggle = elements['contact-toggle']
+  logo.handlers.pointerenter({ pointerType: 'touch' })
+  assert.equal(popup.hidden, true)
+  logo.handlers.pointerenter({ pointerType: 'mouse' })
+  assert.equal(popup.hidden, false)
+  assert.equal(toggle.attributes['aria-expanded'], 'true')
+  logo.handlers.pointerleave({ pointerType: 'mouse' })
+  assert.equal(popup.hidden, true)
+  assert.equal(toggle.attributes['aria-expanded'], 'false')
 })
 
 test('optional email handler is registered when present', () => {

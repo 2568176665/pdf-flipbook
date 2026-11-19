@@ -49,6 +49,23 @@ test('contact menu opens, closes, and restores focus on Escape without email', (
   assert.equal(toggle.focused, true)
 })
 
+test('outside clicks close the menu while clicks inside leave it open', () => {
+  const { elements, documentHandlers } = setup()
+  const logo = elements['floating-logo']
+  const toggle = elements['contact-toggle']
+  const popup = elements['contact-popup']
+  logo.contains = target => target === logo || target === toggle || target === popup
+  toggle.handlers.click()
+  documentHandlers.click({ target: popup })
+  assert.equal(popup.hidden, false)
+  documentHandlers.click({ target: toggle })
+  assert.equal(popup.hidden, false)
+  documentHandlers.click({ target: {} })
+  assert.equal(popup.hidden, true)
+  assert.equal(toggle.attributes['aria-expanded'], 'false')
+  assert.equal(toggle.focused, undefined)
+})
+
 test('mouse hover opens and closes the menu without affecting touch', () => {
   const { elements } = setup()
   const logo = elements['floating-logo']

@@ -45,6 +45,18 @@ function setup({ page, blob = {}, getDocument, sourceURL = 'example.pdf' } = {})
   return { flip, provider, output, revoked, requests, messages }
 }
 
+test('viewer controls expose accessible labels and keyboard-operable thumbnails', () => {
+  const source = fs.readFileSync('lib/js/flip.js', 'utf8')
+  const css = fs.readFileSync('lib/css/main.css', 'utf8')
+  assert.match(source, /aria-label="Go to page"/)
+  assert.match(source, /createElement\("button"\);\s*var i = e \+ 1;\s*t\.type = "button";\s*t\.setAttribute\("aria-label", "Go to page " \+ i\)/)
+  assert.match(source, /<button type="button" aria-label="Close thumbnails"/)
+  assert.match(source, /"aria-controls": menuId/)
+  assert.match(source, /E\.toggleClass\("df-active", open\)\.attr\("aria-expanded", String\(open\)\)/)
+  assert.match(source, /if \(E\.hasClass\("df-active"\)\) \{\s*I\(\);\s*E\.trigger\("focus"\)/)
+  assert.match(css, /\.df-ui-btn\.df-ui-page span/)
+})
+
 const flush = () => new Promise(resolve => setImmediate(resolve))
 const makePage = render => ({ getViewport: () => ({ width: 100, height: 200 }), render })
 

@@ -677,12 +677,12 @@ span.df-share-title {
     color: inherit
 }
 
-.df-ui-page input:focus+label {
+.df-ui-page input:focus+span {
     opacity: 0;
     display: none
 }
 
-.df-ui-page label {
+.df-ui-btn.df-ui-page span {
     position: absolute;
     height: 30px;
     width: 100%;
@@ -1122,6 +1122,10 @@ section.linkAnnotation a .annotationLayer>a {
 }
 
 .df-thumb-container .df-vrow {
+    border: 0;
+    padding: 0;
+    color: inherit;
+    font: inherit;
     height: 124px;
     left: 0;
     width: 90%;

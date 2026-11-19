@@ -17,6 +17,8 @@ function setup(withEmail = false) {
       },
       addEventListener(name, handler) { handlers[name] = handler },
       setAttribute(name, value) { this.attributes[name] = value },
+      getAttribute(name) { return this.attributes[name] },
+      getAnimations() { return [] },
       contains(target) { return target === this },
       focus() { this.focused = true }
     }
@@ -24,6 +26,7 @@ function setup(withEmail = false) {
   const elements = Object.fromEntries(['floating-logo', 'contact-toggle', 'contact-popup', 'whatsapp-link'].map(id => [id, element()]))
   if (withEmail) elements['email-link'] = element()
   elements['contact-popup'].hidden = true
+  elements['contact-toggle'].attributes['aria-expanded'] = 'false'
   const document = {
     getElementById(id) { return elements[id] || null },
     addEventListener(name, handler) { documentHandlers[name] = handler }
@@ -59,6 +62,27 @@ test('mouse hover opens and closes the menu without affecting touch', () => {
   logo.handlers.pointerleave({ pointerType: 'mouse' })
   assert.equal(popup.hidden, true)
   assert.equal(toggle.attributes['aria-expanded'], 'false')
+})
+
+test('closing waits for the fade and reopening cancels the pending hide', async () => {
+  const { elements } = setup()
+  const logo = elements['floating-logo']
+  const popup = elements['contact-popup']
+  let finish
+  popup.getAnimations = () => [{ finished: new Promise(resolve => { finish = resolve }) }]
+  logo.handlers.pointerenter({ pointerType: 'mouse' })
+  logo.handlers.pointerleave({ pointerType: 'mouse' })
+  assert.equal(popup.hidden, false)
+  assert.equal(popup.inert, true)
+  logo.handlers.pointerenter({ pointerType: 'mouse' })
+  finish()
+  await new Promise(resolve => setImmediate(resolve))
+  assert.equal(popup.hidden, false)
+  assert.equal(popup.inert, false)
+  logo.handlers.pointerleave({ pointerType: 'mouse' })
+  finish()
+  await new Promise(resolve => setImmediate(resolve))
+  assert.equal(popup.hidden, true)
 })
 
 test('optional email handler is registered when present', () => {

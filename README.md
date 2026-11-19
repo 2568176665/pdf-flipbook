@@ -8,117 +8,69 @@
 
 ### 问) PDF 中的翻页书页面不可见/显示异常
 
-如果使用链接，请检查 PDF 文件，确保启用了跨域资源共享
+如果使用跨域 PDF 链接，请确保提供 PDF 的服务器允许跨域资源共享（CORS）。本地预览时请通过 HTTP 服务访问页面，而不是直接打开文件。
 
 ## 文件结构
 
-此翻页书插件基于 jQuery。基本上，您可以将文件夹中的文件复制到您的工作目录。您无需包含 lib 文件夹。
+此翻页书插件基于 jQuery。集成时请保留 `lib` 目录及其内部结构：插件会根据 `flip.js` 的位置加载 PDF.js、worker、字体映射、图片和音效等资源。
 
-```
-lib/ 
-    ├── css/
-    │   ├── min.css
-    │   └── themify-icons.css
-    │
-    ├── fonts/
-    │   ├── themify.eot
-    │   ├── themify.svg
-    │   ├── themify.ttf
-    │   └── themify.woff
-    │
-    ├── images/
-    │   └── loading.gif
-    |
-    ├── sound/
-    │   └── turn2.mp3
-    │
-    └── js/
-        ├── flip.js
-        └── libs/
-            ├── jquery.min.js
-            ├── pdf.min.js
-            ├── pdf.worker.min.js
-            ├── three.min.js
-            └── mockup.min.js
-
+```text
+lib/
+├── css/
+│   ├── main.css
+│   ├── themify-icons.min.css
+│   └── gr.css                    # 项目页面样式
+├── fonts/                        # 图标字体
+├── images/                       # 背景图、加载图及 PDF.js 图片
+├── js/
+│   ├── flip.js
+│   ├── contact.js                # 项目页面的联系方式脚本
+│   └── libs/                     # jQuery、PDF.js、worker、Three.js 等
+│       └── cmaps/                # PDF 字体映射
+├── pdf/
+│   └── Product Catalog.pdf       # 示例 PDF
+└── sound/                        # 翻页音效
 ```
 
-## 文件模板
+## 集成示例
 
-并确保在 html 中包含以下文件。
+以下示例假设 HTML 文件与 `lib` 目录位于同一级。通过 HTTP 服务打开该页面，插件会自动从 `lib` 加载所需资源。可将 PDF 路径替换为自己的文件或支持 CORS 的地址。
 
-### CSS
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF 翻页书</title>
+  <link href="lib/css/main.css" rel="stylesheet">
+  <link href="lib/css/themify-icons.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="productBrochure"></div>
 
-```
-            
-<!-- 翻页书样式表 -->
-<link href="http://www.yoursite.com/lib/css/min.css" rel="stylesheet" type="text/css">
-
-<!-- 图标样式表 -->
-  <link href="http://www.yoursite.com/lib/css/themify-icons.css" rel="stylesheet" type="text css">
-            
-        
-```
-
-### JavaScript
-
-注意：将它们包含在 </body> 标签之前。不要在 head 中使用。
-
-```
-            
-<!-- jQuery 1.9.1 或更高版本 -->
-
-<script src="http://www.yoursite.com/lib/js/libs/jquery.min.js" type="text/javascript"></script>
-
-
-<!-- 翻页书主 JavaScript 文件 -->
-
-<script src="http://www.yoursite.com/lib/js/flip.min.js" type="text/javascript"></script>
-            
-        
-```
-
-基本 HTML 模板
-
-```
-
-<html>
-   <head>
-       <meta charset="utf-8">
-       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-       
-          <title>基本 HTML 模板</title>
-
-     <!-- 翻页书样式表 -->
-      <link href="http://www.yoursite.com/lib/css/min.css" rel="stylesheet" type="text/css">
-
-     <!-- 图标样式表 -->
-     <link href="http://www.yoursite.com/lib/css/themify-icons.css" rel="stylesheet" type="text/css">
-
-   </head>
-    <body>
-    <div class="_df_thumb" id="df_manual_thumb" source="pdf文件位置.pdf" thumb="缩略图位置.jpg"> PDF 示例</div >
-    <!-- 参考其他示例以了解如何创建不同类型的翻页书 -->
-
-    <!-- jQuery 1.9.1 或更高版本 -->
-    <script src="http://www.yoursite.com/lib/js/libs/jquery.min.js" type="text/javascript"></script>
-
-    <!-- 翻页书主 JavaScript 文件 -->
-    <script src="http://www.yoursite.com/lib/js/flip.min.js" type="text/javascript"></script>
-
-    </body>
-    </html>
+  <script src="lib/js/libs/jquery.min.js"></script>
+  <script src="lib/js/flip.js"></script>
+  <script>
+    jQuery(document).ready(function () {
+      var pdf = 'lib/pdf/Product Catalog.pdf'
+      var options = {
+        height: 2000,
+        duration: 700,
+        backgroundImage: 'lib/images/bg.webp',
+        soundEnable: true,
+        useTouch: true,
+        enableDownload: true,
+        singlePageMode: true,
+      }
+      $('#productBrochure').flipBook(pdf, options)
+    })
+  </script>
+</body>
+</html>
 ```
 
-通过按钮灯箱创建翻页书。
-
-```
-<div class="_df_button"
-    source="http://www.yoursite.com/file.pdf"
-    id="df_manual_button">
-    按钮
-</div>
-```
+仓库中的 `index.html` 使用相同的初始化方式，并额外引入 `lib/css/gr.css` 和 `lib/js/contact.js` 来展示项目的联系方式。
 
 ---
 

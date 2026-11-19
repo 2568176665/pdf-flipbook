@@ -9,7 +9,7 @@ body {
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
-.hidden {
+#contact-popup[hidden] {
   display: none;
 }
 
@@ -25,6 +25,13 @@ body {
   align-items: center;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   animation: bounce 2s infinite;
+}
+
+#contact-toggle {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 #floating-logo::before {

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Great-Will Product Manual</title>
-  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- 翻页书样式表 -->
   <link href="lib/css/main.css" rel="stylesheet" />
@@ -19,10 +19,12 @@
 <body>
   <!-- Logo导航栏 -->
   <div id="floating-logo">
-    <img src="lib/images/logo.webp" alt="logo" class="logo" />
+    <button type="button" id="contact-toggle" aria-label="Contact Us" aria-controls="contact-popup" aria-expanded="false">
+      <img src="lib/images/logo.webp" alt="" class="logo" />
+    </button>
     <span class="tooltip">Contact Us</span>
     <!-- 弹出框 -->
-    <div id="contact-popup" class="hidden">
+    <div id="contact-popup" hidden>
       <div class="tooltip-container">
         <a href="#" target="_blank" id="whatsapp-link">
           <img src="lib/images/whatsapp.svg" alt="WhatsApp" class="contact-icon" />

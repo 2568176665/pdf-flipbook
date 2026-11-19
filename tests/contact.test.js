@@ -1,0 +1,58 @@
+const test = require('node:test')
+const assert = require('node:assert/strict')
+const fs = require('node:fs')
+const vm = require('node:vm')
+
+function setup(withEmail = false) {
+  const documentHandlers = {}
+  function element() {
+    const handlers = {}
+    const classes = new Set()
+    return {
+      handlers, hidden: false, style: {}, attributes: {},
+      classList: {
+        toggle(name, enabled) { enabled ? classes.add(name) : classes.delete(name) },
+        remove(name) { classes.delete(name) },
+        contains(name) { return classes.has(name) }
+      },
+      addEventListener(name, handler) { handlers[name] = handler },
+      setAttribute(name, value) { this.attributes[name] = value },
+      contains(target) { return target === this },
+      focus() { this.focused = true }
+    }
+  }
+  const elements = Object.fromEntries(['floating-logo', 'contact-toggle', 'contact-popup', 'whatsapp-link'].map(id => [id, element()]))
+  if (withEmail) elements['email-link'] = element()
+  elements['contact-popup'].hidden = true
+  const document = {
+    getElementById(id) { return elements[id] || null },
+    addEventListener(name, handler) { documentHandlers[name] = handler }
+  }
+  vm.runInNewContext(fs.readFileSync('lib/js/contact.js', 'utf8'), { document, window: { open() {} } })
+  documentHandlers.DOMContentLoaded()
+  return { elements, documentHandlers }
+}
+
+test('contact menu opens, closes, and restores focus on Escape without email', () => {
+  const { elements, documentHandlers } = setup()
+  const toggle = elements['contact-toggle']
+  const popup = elements['contact-popup']
+  toggle.handlers.click()
+  assert.equal(popup.hidden, false)
+  assert.equal(toggle.attributes['aria-expanded'], 'true')
+  documentHandlers.keydown({ key: 'Escape' })
+  assert.equal(popup.hidden, true)
+  assert.equal(toggle.attributes['aria-expanded'], 'false')
+  assert.equal(toggle.focused, true)
+})
+
+test('optional email handler is registered when present', () => {
+  assert.equal(typeof setup(true).elements['email-link'].handlers.click, 'function')
+})
+
+test('page starts with a hidden menu and permits zoom', () => {
+  const html = fs.readFileSync('index.html', 'utf8')
+  assert.match(html, /id="contact-popup" hidden/)
+  assert.match(html, /id="contact-toggle"[^>]*aria-expanded="false"/)
+  assert.doesNotMatch(html, /user-scalable=no|maximum-scale=1/)
+})

@@ -56,3 +56,15 @@ test('page starts with a hidden menu and permits zoom', () => {
   assert.match(html, /id="contact-toggle"[^>]*aria-expanded="false"/)
   assert.doesNotMatch(html, /user-scalable=no|maximum-scale=1/)
 })
+
+test('WhatsApp has a real URL and contact labels support keyboard and touch', () => {
+  const html = fs.readFileSync('index.html', 'utf8')
+  const css = fs.readFileSync('lib/css/gr.css', 'utf8')
+  const { elements } = setup()
+  assert.match(html, /href="https:\/\/api\.whatsapp\.com\/send\?phone=8613531717068"[^>]*id="whatsapp-link"/)
+  assert.equal(elements['whatsapp-link'].handlers.click, undefined)
+  assert.match(css, /#contact-popup a:focus-visible \.tooltip/)
+  assert.match(css, /@media \(hover: none\)\s*\{\s*#contact-popup \.tooltip/)
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/)
+  assert.doesNotMatch(css, /animation:\s*(bounce|ripple)/)
+})

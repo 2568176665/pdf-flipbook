@@ -677,12 +677,12 @@ span.df-share-title {
     color: inherit
 }
 
-.df-ui-page input:focus+span {
+.df-ui-page input:focus+label {
     opacity: 0;
     display: none
 }
 
-.df-ui-btn.df-ui-page span {
+.df-ui-page label {
     position: absolute;
     height: 30px;
     width: 100%;

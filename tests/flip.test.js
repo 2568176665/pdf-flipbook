@@ -54,7 +54,8 @@ test('viewer controls expose accessible labels and keyboard-operable thumbnails'
   assert.match(source, /"aria-controls": menuId/)
   assert.match(source, /E\.toggleClass\("df-active", open\)\.attr\("aria-expanded", String\(open\)\)/)
   assert.match(source, /if \(E\.hasClass\("df-active"\)\) \{\s*I\(\);\s*E\.trigger\("focus"\)/)
-  assert.match(css, /\.df-ui-btn\.df-ui-page span/)
+  assert.ok(source.includes(`c.pageLabel = i('<label/>').attr("for", pageInputId)`))
+  assert.match(css, /\.df-ui-page input:focus\+label/)
 })
 
 const flush = () => new Promise(resolve => setImmediate(resolve))
